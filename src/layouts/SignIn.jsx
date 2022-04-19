@@ -1,57 +1,58 @@
-import { Form, Input, Button, Checkbox, Row, Col, Image } from 'antd';
+import { useNavigate } from "react-router-dom";
+import { Form, Input, Button, Typography } from 'antd';
+import '../assets/css/login.css';
+import {LockOutlined, UserOutlined} from "@ant-design/icons";
 
 const SignIn = () => {
+    let navigate = useNavigate()
     const onFinish = (values) => {
+        const {userName, password} = values;
         console.log('Success:', values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        if (userName === "admin" && password === "admin"){
+            navigate("/",{replace: true})
+        }else{
+            navigate("/login",{replace: true})
+        }
     };
 
     return (
-        <Row>
-            <Col span={12}>
-                <Image width={600} preview={false}/>
-            </Col>
-            <Col span={12}>
-                <Form
-                    name="basic"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    initialValues={{ remember: true }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                    autoComplete="off"
-                >
+        <div className="login">
+            <div className="login-form">
+                <div className="login-logo">
+                    <Typography.Text strong keyboard style={{ color:'#1890ff', fontSize: '25px' }}>
+                        My App ANTD
+                    </Typography.Text>
+                </div>
+                <Form onFinish={onFinish} style={{ maxWidth: '300px' }}>
                     <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[{ required: true, message: 'Please input your username!' }]}
+                        name="userName"
+                        rules={[{ required: true, message: 'Username tidak boleh kosong!' }]}
                     >
-                        <Input />
+                        <Input
+                            prefix={<UserOutlined size={13} />}
+                            placeholder="Username"
+                        />
                     </Form.Item>
-
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[{ required: true, message: 'Please input your password!' }]}
-                    >
-                        <Input.Password />
+                    <Form.Item name="password" rules={[{ required: true, message: 'Password tidak boleh kosong!' }]}>
+                        <Input
+                            prefix={<LockOutlined size={13} />}
+                            type="password"
+                            placeholder="Password"
+                        />
                     </Form.Item>
-
-                    <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" htmlType="submit">
-                            Submit
+                    <Form.Item>
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            className="login-form-button"
+                            style={{ width: '100%' }}
+                        >
+                            Login
                         </Button>
                     </Form.Item>
                 </Form>
-            </Col>
-        </Row>
+            </div>
+        </div>
     );
 };
 export default SignIn

@@ -1,11 +1,17 @@
-// import SignIn from "./layouts/SignIn";
-import Dashboard from "./layouts/Dashboard";
+import { BrowserRouter,Routes, Route } from "react-router-dom";
+
+import Home from "./views/Home"
+import SignIn from "./layouts/SignIn";
 
 function App() {
     return (
-        // <SignIn/>
-        <Dashboard/>
-    );
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="login" element={<SignIn/>}/>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App;

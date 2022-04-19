@@ -7,9 +7,22 @@ const { Sider } = Layout;
 const AppSidebar = () => {
     const {collapsed} = useContext(CollapseContext)
     return (
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-            <div className="logo" />
-            <AppSidebarMenu theme="dark" mode="inline" style={{ height: '100vh' }} />
+        <Sider
+            trigger={null}
+            theme="light"
+            breakpoint="lg"
+            collapsible
+            collapsed={collapsed}
+        >
+            <div className="logo">
+                {/*<Typography.Text strong keyboard style={{ color:'#1890ff', fontSize: '20px', marginLeft: '15px' }}>*/}
+                {/*    My App ANTD*/}
+                {/*</Typography.Text>*/}
+            </div>
+            <AppSidebarMenu
+                theme="light"
+                mode="inline"
+            />
         </Sider>
     );
 };

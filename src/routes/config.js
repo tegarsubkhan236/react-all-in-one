@@ -1,11 +1,12 @@
 import {HomeFilled, ScanOutlined} from "@ant-design/icons";
+import Home from "../views/Home";
 
 const menus = [
     {
         key: "dashboard",
         title: 'Dashboard',
         icon: <HomeFilled/>,
-        component: 'Dashboard',
+        component: <Home/>,
     },
     {
         key: "ui",
