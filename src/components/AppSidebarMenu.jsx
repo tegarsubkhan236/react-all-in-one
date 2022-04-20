@@ -1,13 +1,16 @@
 import { Menu } from 'antd';
 import menus from '../routes/config';
+import {Link} from "react-router-dom";
 
 const renderParent = (item) => {
     return(
         <Menu.Item key={item.key}>
-            {item?.icon}
-            <span className="nav-text">
-                {item.title}
-            </span>
+            <Link to={item.key}>
+                {item?.icon}
+                <span className="nav-text">
+                    {item.title}
+                </span>
+            </Link>
         </Menu.Item>
     )
 }
@@ -18,7 +21,9 @@ const renderParentAndSub = (item) => {
             title={<span className="nav-text">{item.title}</span>}
             icon={item?.icon}
         >
-            {item.subs.map((sub) => (sub.subs ? renderParentAndSub(sub) : renderParent(sub)))}
+            {item.subs.map(
+                (sub) => (sub.subs ? renderParentAndSub(sub) : renderParent(sub))
+            )}
         </Menu.SubMenu>
     )
 }

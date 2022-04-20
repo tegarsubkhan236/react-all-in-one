@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Form, Input, Button, Typography } from 'antd';
 import '../assets/css/login.css';
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
@@ -41,14 +41,16 @@ const SignIn = () => {
                         />
                     </Form.Item>
                     <Form.Item>
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="login-form-button"
-                            style={{ width: '100%' }}
-                        >
-                            Login
-                        </Button>
+                        <Link to="/">
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                className="login-form-button"
+                                style={{ width: '100%' }}
+                            >
+                                Login
+                            </Button>
+                        </Link>
                     </Form.Item>
                 </Form>
             </div>

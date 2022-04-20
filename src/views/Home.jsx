@@ -1,9 +1,7 @@
-import Main from "../layouts/Main";
 import {Content} from "antd/es/layout/layout";
 
 const Home = () => {
     return (
-        <Main>
             <Content
                 className="site-layout-background"
                 style={{
@@ -12,9 +10,8 @@ const Home = () => {
                     minHeight: 280,
                 }}
             >
-                Home
+                Home Ayee
             </Content>
-        </Main>
     );
 };
 
