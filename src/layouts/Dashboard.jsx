@@ -2,28 +2,12 @@ import '../assets/css/dashboard.css'
 import AppSidebar from "../components/AppSidebar";
 import AppHeader from "../components/AppHeader";
 import CollapseProvider from "../context/AppContext"
+import {renderRouteLayout, renderSubRouteLayout} from "../utils/utils"
 import {Layout} from 'antd';
-import {Route, Routes} from "react-router-dom";
+import {Routes} from "react-router-dom";
 import menus from '../routes/config';
 
 export default function Dashboard() {
-    const renderParent = (item) => {
-        return(
-            <>
-                <Route path={item.key} element={item.component}/>
-            </>
-        )
-    }
-    const renderParentAndSub = (item) => {
-        return (
-            <>
-                <Route path={item.key} element={item.component}/>
-                {item.subs.map(
-                    (sub) => (sub.subs ? renderParentAndSub(sub) : renderParent(sub))
-                )}
-            </>
-        )
-    }
     return (
         <CollapseProvider>
             <Layout>
@@ -33,8 +17,8 @@ export default function Dashboard() {
                     <Routes>
                         {menus.map((item, _) =>
                             item.hasOwnProperty("subs")
-                                ? renderParentAndSub(item)
-                                : renderParent(item)
+                                ? renderSubRouteLayout(item)
+                                : renderRouteLayout(item)
                         )}
                     </Routes>
                 </Layout>

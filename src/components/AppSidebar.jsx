@@ -1,7 +1,8 @@
 import {useContext} from "react";
+import {renderMenuSidebar, renderSubMenuSidebar} from "../utils/utils"
 import {CollapseContext} from "../context/AppContext";
-import {Layout} from 'antd';
-import AppSidebarMenu from "../components/AppSidebarMenu";
+import {Layout, Menu} from 'antd';
+import menus from "../routes/config";
 const { Sider } = Layout;
 
 const AppSidebar = () => {
@@ -15,10 +16,16 @@ const AppSidebar = () => {
             collapsed={collapsed}
         >
             <div className="logo"/>
-            <AppSidebarMenu
+            <Menu
                 theme="light"
                 mode="inline"
-            />
+            >
+                {menus.map((item, _) =>
+                    item.hasOwnProperty("subs")
+                        ? renderSubMenuSidebar(item)
+                        : renderMenuSidebar(item)
+                )}
+            </Menu>
         </Sider>
     );
 };

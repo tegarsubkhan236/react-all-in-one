@@ -8,7 +8,6 @@ const AppHeader = () => {
     const {collapsed, setCollapsed} = useContext(CollapseContext)
     const toggleCollapse = () => {
         setCollapsed(prevCollapsed => !prevCollapsed)
-        console.log("collapsed =",collapsed)
     }
     return(
         <Header className="site-layout-background" style={{ padding: 0 }}>
