@@ -1,19 +1,14 @@
-import {createElement, useContext} from "react";
+import {createElement} from "react";
 import {Layout} from 'antd';
 import {MenuFoldOutlined,MenuUnfoldOutlined} from "@ant-design/icons";
-import {CollapseContext} from "../context/AppContext";
 const { Header } = Layout;
 
-const AppHeader = () => {
-    const {collapsed, setCollapsed} = useContext(CollapseContext)
-    const toggleCollapse = () => {
-        setCollapsed(prevCollapsed => !prevCollapsed)
-    }
+const AppHeader = ({toggle, collapsed}) => {
     return(
         <Header className="site-layout-background" style={{ padding: 0 }}>
             {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                 className: 'trigger',
-                onClick: toggleCollapse,
+                onClick: toggle,
             })}
         </Header>
     );

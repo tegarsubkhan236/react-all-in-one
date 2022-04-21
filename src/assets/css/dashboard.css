@@ -16,6 +16,12 @@
     /*background: rgba(24,144,255,0.75);*/
 }
 
+.content {
+    margin: 25px 15px;
+    padding: 25px;
+    background: #fff;
+}
+
 .site-layout .site-layout-background {
     background: #fff;
 }

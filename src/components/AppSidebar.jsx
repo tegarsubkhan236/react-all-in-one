@@ -1,29 +1,23 @@
-import {useContext} from "react";
 import {renderMenuSidebar, renderSubMenuSidebar} from "../utils/utils"
-import {CollapseContext} from "../context/AppContext";
 import {Layout, Menu} from 'antd';
 import menus from "../routes/config";
 const { Sider } = Layout;
 
-const AppSidebar = () => {
-    const {collapsed} = useContext(CollapseContext)
+const AppSidebar = ({collapsed}) => {
     return (
         <Sider
             trigger={null}
-            theme="light"
+            style={{ overflowY: 'auto' }}
             breakpoint="lg"
             collapsible
             collapsed={collapsed}
         >
             <div className="logo"/>
-            <Menu
-                theme="light"
-                mode="inline"
-            >
+            <Menu mode="inline" theme={"dark"}>
                 {menus.map((item, _) =>
-                    item.hasOwnProperty("subs")
-                        ? renderSubMenuSidebar(item)
-                        : renderMenuSidebar(item)
+                    item.isSidebar === true
+                        ? item.hasOwnProperty("subs") ? renderSubMenuSidebar(item) : renderMenuSidebar(item)
+                        : ''
                 )}
             </Menu>
         </Sider>

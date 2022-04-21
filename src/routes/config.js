@@ -2,42 +2,49 @@ import {HomeFilled, ScanOutlined, LogoutOutlined} from "@ant-design/icons";
 import Home from "../views/Home";
 import Damn from "../views/Damn";
 import Finish from "../views/Finish";
-import Test from "../views/Test";
+import Default from "../views/Default";
 
 const menus = [
     {
+        key: "/",
+        isLayout: true,
+        component: <Default/>,
+    },
+    {
         key: "home",
         title: 'Dashboard',
+        isSidebar: true,
+        isLayout: true,
         icon: <HomeFilled/>,
         component: <Home/>,
     },
     {
         key: "ui",
         title: 'UI',
-        icon: <ScanOutlined/>,
-        subs: [
-            { key: "ui/buttons", title: 'Buttons', component: <Damn/> },
-            { key: "ui/icons", title: 'Icons', component: <Finish/> },
-        ]
-    },
-    {
-        key: "cek",
-        title: 'CEK',
+        isSidebar: true,
+        hasChild: true,
         icon: <ScanOutlined/>,
         subs: [
             {
-                key: "extend",
-                title: "extend",
-                icon: <ScanOutlined/>,
-                subs:[
-                    { key: "cek/buttons", title: 'Buttons', component: <Test/> },
-                    { key: "cek/icons", title: 'Icons', component: <Damn/> },
-                ]
+                key: "ui/buttons",
+                isSidebar: true,
+                isLayout: true,
+                title: 'Buttons',
+                component: <Damn/>
+            },
+            {
+                key: "ui/icons",
+                isSidebar: true,
+                isLayout: true,
+                title: 'Icons',
+                component: <Finish/>
             },
         ]
     },
     {
         key: "login",
+        isSidebar: true,
+        isLayout: true,
         title: "Logout",
         icon: <LogoutOutlined/>
     }
