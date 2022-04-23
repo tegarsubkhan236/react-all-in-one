@@ -5,10 +5,12 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "antd": "^4.19.5",
+    "axios": "^0.26.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "sass": "^1.50.1"
   },
   "devDependencies": {},
   "scripts": {

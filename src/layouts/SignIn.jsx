@@ -1,54 +1,51 @@
 import {Link, useNavigate} from "react-router-dom";
-import { Form, Input, Button, Typography } from 'antd';
-import '../assets/css/login.css';
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
+import {Button, Checkbox, Form, Input} from 'antd';
+import styles from '../assets/css/login.module.scss';
 
 const SignIn = () => {
     let navigate = useNavigate()
+    const onFinishFailed = errorInfo => {
+        console.log('Failed:', errorInfo);
+    };
     const onFinish = (values) => {
         const {userName, password} = values;
         console.log('Success:', values);
-        if (userName === "admin" && password === "admin"){
-            navigate("/",{replace: true})
-        }else{
-            navigate("/login",{replace: true})
+        if (userName === "admin" && password === "admin") {
+            navigate("/", {replace: true})
+        } else {
+            navigate("/login", {replace: true})
         }
     };
 
     return (
-        <div className="login">
-            <div className="login-form">
-                <div className="login-logo">
-                    <Typography.Text strong keyboard style={{ color:'#1890ff', fontSize: '25px' }}>
-                        My App ANTD
-                    </Typography.Text>
+        <div className={styles.loginPage}>
+            <div className={styles.loginBox}>
+                <div className={styles.illustrationWrapper}>
+                    <img
+                        src="https://mixkit.imgix.net/art/preview/mixkit-left-handed-man-sitting-at-a-table-writing-in-a-notebook-27-original-large.png?q=80&auto=format%2Ccompress&h=700"
+                        alt="Login"/>
                 </div>
-                <Form onFinish={onFinish} style={{ maxWidth: '300px' }}>
-                    <Form.Item
-                        name="userName"
-                        rules={[{ required: true, message: 'Username tidak boleh kosong!' }]}
-                    >
-                        <Input
-                            prefix={<UserOutlined size={13} />}
-                            placeholder="Username"
-                        />
+                <Form className={styles.loginForm} initialValues={{remember: true}} onFinish={onFinish}
+                      onFinishFailed={onFinishFailed}>
+                    <p className={styles.formTitle}>Welcome Back</p>
+                    <p>Login To Dashboard</p>
+                    <Form.Item name="username" rules={[{required: true, message: 'Please input your username!'}]}>
+                        <Input className={styles.formInput} placeholder={"Username"}/>
                     </Form.Item>
-                    <Form.Item name="password" rules={[{ required: true, message: 'Password tidak boleh kosong!' }]}>
-                        <Input
-                            prefix={<LockOutlined size={13} />}
-                            type="password"
+                    <Form.Item name="password" rules={[{required: true, message: 'Please input your password!'}]}>
+                        <Input.Password
+                            className={styles.formInput}
                             placeholder="Password"
                         />
                     </Form.Item>
+                    <Form.Item name="remember" valuePropName="checked">
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
                     <Form.Item>
-                        <Link to="/">
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                className="login-form-button"
-                                style={{ width: '100%' }}
-                            >
-                                Login
+                        <Link to={"/"}>
+                            <Button type="primary" htmlType="submit" className={styles.loginButton}>
+                                LOGIN
                             </Button>
                         </Link>
                     </Form.Item>

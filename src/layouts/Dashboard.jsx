@@ -1,12 +1,10 @@
 import {useState} from "react";
-import {Routes} from "react-router-dom";
-import {renderRouteLayout, renderSubRouteLayout} from "../utils/utils"
+import {Outlet} from "react-router-dom";
 import {Layout} from 'antd';
-import '../assets/css/dashboard.css'
-import menus from '../routes/config';
 import AppSidebar from "../components/AppSidebar";
 import AppHeader from "../components/AppHeader";
 
+const {Content} = Layout
 
 export default function Dashboard() {
     const [collapsed, setCollapsed] = useState(false)
@@ -15,15 +13,11 @@ export default function Dashboard() {
     return (
         <Layout>
             <AppSidebar collapsed={collapsed}/>
-            <Layout className="site-layout">
+            <Layout>
                 <AppHeader toggle={toggle} collapsed={collapsed}/>
-                <Routes>
-                    {menus.map((item, _) =>
-                        item.isLayout === true || item.hasChild === true
-                            ? item.hasOwnProperty("subs") ? renderSubRouteLayout(item) : renderRouteLayout(item)
-                            : ''
-                    )}
-                </Routes>
+                <Content style={{margin: '24px 16px 0'}}>
+                    <Outlet/>
+                </Content>
             </Layout>
         </Layout>
     );

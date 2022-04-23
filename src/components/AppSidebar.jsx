@@ -1,25 +1,26 @@
-import {renderMenuSidebar, renderSubMenuSidebar} from "../utils/utils"
-import {Layout, Menu} from 'antd';
-import menus from "../routes/config";
+import {Layout} from 'antd';
+import SidebarRoutes from "../routes/SidebarRoutes";
 const { Sider } = Layout;
 
 const AppSidebar = ({collapsed}) => {
     return (
         <Sider
             trigger={null}
-            style={{ overflowY: 'auto' }}
+            theme={"dark"}
+            style={{ overflowY: 'auto', height: '100vh' }}
             breakpoint="lg"
             collapsible
             collapsed={collapsed}
         >
-            <div className="logo"/>
-            <Menu mode="inline" theme={"dark"}>
-                {menus.map((item, _) =>
-                    item.isSidebar === true
-                        ? item.hasOwnProperty("subs") ? renderSubMenuSidebar(item) : renderMenuSidebar(item)
-                        : ''
-                )}
-            </Menu>
+            <div
+                className="logo"
+                style={{
+                    height: '32px',
+                    margin: '16px',
+                    background: '#fff'
+                }}
+            />
+            <SidebarRoutes/>
         </Sider>
     );
 };

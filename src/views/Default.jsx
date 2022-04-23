@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const Default = () => {
     return (
-        <Content className="content">
+        <>
             <Result
                 status="403"
                 title="WELCOME TO DASHBOARD"
@@ -15,7 +15,7 @@ const Default = () => {
                     </Link>
                 }
             />
-        </Content>
+        </>
     );
 };
 
